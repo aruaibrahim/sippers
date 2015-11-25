@@ -113,6 +113,11 @@ class HidrocantabricoSipsAdapter(SipsAdapter, SipsSchema):
         data['persona_fj'] = mapping.get(fj)
         return data
 
+    @pre_load
+    def fix_nomcognoms(self, data):
+        nom_complet = data.get('nombre_ic')
+        data['cognom'] = nom_complet
+        return data
 
 class HidrocantabricoMeasuresAdapter(MeasuresAdapter, MeasuresSchema):
 
